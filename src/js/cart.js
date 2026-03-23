@@ -1,5 +1,7 @@
-import { getLocalStorage } from './utils.mjs';
+import ShoppingCart from './ShoppingCart.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
+<<<<<<< HEAD
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart') || [];
   if (cartItems.length === 0) {
@@ -40,8 +42,10 @@ function cartItemTemplate(item) {
   <p class="cart-card__price">$${item.FinalPrice}</p>
   <p class="cart-card__total_price">Product Total: $${item.totalPrice}</p>
 </li>`;
+=======
+const cart = new ShoppingCart();
 
-  return newItem;
-}
+loadHeaderFooter();
+>>>>>>> c835812b898a0ff8e5fbd02667d0fb74af7989e9
 
-renderCartContents();
+cart.init();
