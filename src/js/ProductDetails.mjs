@@ -25,15 +25,18 @@ export default class ProductDetails {
     );
 
     if (existingProductIndex !== -1) {
-      currentCart[existingProductIndex].qty++;
-      currentCart[existingProductIndex].totalPrice =
-        currentCart[existingProductIndex].qty *
-        currentCart[existingProductIndex].FinalPrice;
+      const item = currentCart[existingProductIndex];
+      item.qty = (Number(item.qty) || 0) + 1;
+      item.totalPrice = item.qty * (Number(item.FinalPrice) || 0);
     } else {
-      this.product.qty = 1;
-      this.product.totalPrice = this.product.FinalPrice;
-      currentCart.push(this.product);
+      const newItem = {
+        ...this.product,
+        qty: 1,
+        totalPrice: Number(this.product.FinalPrice) || 0,
+      };
+      currentCart.push(newItem);
     }
+
     setLocalStorage('so-cart', currentCart);
   }
 
